@@ -59,10 +59,8 @@ public class Tasks {
                System.out.println(a);
            } else if ((b > a && b < c) || (b < a && b > c) || b == c) {
                System.out.println(b);
-           } else if ((c > a && c < b) || (c < a && c > b) ) {
+           } else {
                System.out.println(c);
-           } else if (a == b && a == c && b == c){
-               System.out.println(a);
            }
 
 
