@@ -12,5 +12,6 @@ public class Main {
 
 
 //        Dog sharik = new Dog("Sharik Ulicniy", 15);
+
     }
 }
