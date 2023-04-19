@@ -1,13 +1,13 @@
 package lesson_7.animals;
 
 public class Cat {
-    // ïîëÿ
+    // Поля
     String name;
     Integer age;
     String parentName;
 
 
-    // êîíñòðóêòîð
+    // Конструктор
 
 
     public Cat(String name, Integer age, String parentName) {
