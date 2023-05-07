@@ -1,0 +1,5 @@
+package lesson_12.product;
+
+public class Basket {
+    private Product[] products;
+}
