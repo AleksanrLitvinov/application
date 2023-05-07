@@ -1,7 +1,8 @@
 package lesson_12.person;
 
 public class Main {
-//    2
+//2
+//
 //    Создать класс Person, который содержит:
 //
 //    переменные fullName, age;
