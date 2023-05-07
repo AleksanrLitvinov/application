@@ -14,10 +14,10 @@ public class Person {
     }
 
     public void move() {
-        System.out.println("Такой-то " + this.fullName  + " говорит");
+        System.out.println("РўР°РєРѕР№-С‚Рѕ " + this.fullName  + " РіРѕРІРѕСЂРёС‚");
     }
 
     public void talk() {
-        System.out.println("Такой-то " + this.fullName  + " говорит");
+        System.out.println("РўР°РєРѕР№-С‚Рѕ " + this.fullName  + " РіРѕРІРѕСЂРёС‚");
     }
 }

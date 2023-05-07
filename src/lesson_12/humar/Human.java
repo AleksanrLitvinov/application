@@ -30,7 +30,7 @@ public class Human {
     }
 
     public String getStringGender() {
-        return this.gender ? "Мужской" : "Женский";
+        return this.gender ? "РњСѓР¶СЃРєРѕР№" : "Р–РµРЅСЃРєРёР№";
     }
 
     @Override
@@ -38,17 +38,17 @@ public class Human {
         String str = "" ;
         if (father != null && mother != null) {
           str = "Human{" +
-                    "Имя " + name + '\'' +
-                    ", Пол " + getStringGender() +
-                    ", Возраст " + age +
-                    ", Отец " + father.name +
-                    ", Мать " + mother.name +
+                    "РРјСЏ " + name + '\'' +
+                    ", РџРѕР» " + getStringGender() +
+                    ", Р’РѕР·СЂР°СЃС‚ " + age +
+                    ", РћС‚РµС† " + father.name +
+                    ", РњР°С‚СЊ " + mother.name +
                     '}';
         } else {
             str = "Human{" +
-                    "Имя " + name + '\'' +
-                    ", Пол " + getStringGender() +
-                    ", Возраст " + age +
+                    "РРјСЏ " + name + '\'' +
+                    ", РџРѕР» " + getStringGender() +
+                    ", Р’РѕР·СЂР°СЃС‚ " + age +
                     '}';
         }
 
