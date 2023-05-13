@@ -5,6 +5,12 @@ import lesson_12.game.interfaces.Player;
 
 public class Croupier extends PlayerImp {
 
+    private  String name ;
+
+    public Croupier() {
+        this.name = "Croupier";
+    }
+
     @Override
     public boolean needCard() {
         if (countValuesAllCardOnHand() > 17) {
@@ -16,5 +22,10 @@ public class Croupier extends PlayerImp {
     @Override
     public boolean isCroupier() {
         return true;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }

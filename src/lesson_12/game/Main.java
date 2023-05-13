@@ -2,43 +2,41 @@ package lesson_12.game;
 
 import lesson_12.game.entities.BlackJackGameImp;
 import lesson_12.game.entities.Croupier;
-import lesson_12.game.entities.DeckOfCardImp;
 import lesson_12.game.entities.PlayerImp;
 import lesson_12.game.interfaces.BlackJackGame;
-import lesson_12.game.interfaces.DeckOfCard;
-import lesson_12.game.interfaces.Player;
+
+import java.util.Scanner;
+
+//        1 - Добавить имена игрокам
+//        2 - регулировать кол-во игроков
+//        3 - отрегулировать процесс выявления победителя, разбирали на уроке, что последний шаг проверки барахлит
+//        4 * - добавить символ каждой карты и выводить саму карту с её символом + текстовое описание
 
 public class Main {
 
     public static void main(String[] args) {
-//        DeckOfCard deckOfCard = new DeckOfCardImp();
-//        deckOfCard.getRandomCard().printCard();
-//
-//        PlayerImp player1 = new PlayerImp();
-//
-//        player1.takeCard(deckOfCard.getRandomCard());
-//        player1.takeCard(deckOfCard.getRandomCard());
-//        player1.takeCard(deckOfCard.getRandomCard());
-//
-//        System.out.println(player1.countValuesAllCardOnHand());
-//        player1.showCardOnHand();
-//
-        // 1 - ������� ����
+
+        // 1 - Создать игру
         BlackJackGame game = new BlackJackGameImp();
-        // 2 - ��������� �������
-        Player player1 = new PlayerImp();
-        Player player2 = new PlayerImp();
-        // 3 - ������� ������
+        // 2 - Создавать игроков
+        System.out.println("Введите количество игроков");
+        Scanner scanner = new Scanner(System.in);
+        int numberOfPlayers = scanner.nextInt();
+        for (int i = 0; i < numberOfPlayers; i++) {
+            System.out.println("Имя игрока");
+            Scanner scannerName = new Scanner(System.in);
+            game.addPlayerInGame(new PlayerImp(scannerName.nextLine()));
+        }
+        // 3 - Создать крупье Добавит играка и крупье в игру
         Croupier croupier = new Croupier();
-        // 4 - ������� ������ � ������ � ����
-        game.addPlayerInGame(player1);
-        game.addPlayerInGame(player2);
         game.addPlayerInGame(croupier);
-        // 5 - ��������� �� ��� ����� ������� ������
+        // 4 - Раздовать по две карты каждому игроку
         game.giveTwoCardsToEachPlayerOnStart();
-        // 6 - ��������� �� ����� ����� ������ ���� ��� ���������
+        // 5 - Раздовать по одной карти игроку пока ему требуется
         game.giveCardIfNeedToPlayer();
-        // 7 - ���������� ����������
+        // 6 - Определить победителя
         game.printWinner();
+
+
     }
 }

@@ -16,7 +16,7 @@ public interface Player {
 
     // Выводит карту на руках
 
-    void showCardOnHand();
+    void showCardOnHandAhdSymbol();
 
     // В игре
     boolean isInGame();

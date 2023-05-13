@@ -6,9 +6,18 @@ import lesson_12.game.interfaces.Player;
 import java.util.Scanner;
 
 public class PlayerImp implements Player {
+    private String name;
     CardBJ[] cardBJS = new CardBJImpl[52];
     private boolean inGame = true;
-    // Взять карту из колоды
+
+    public PlayerImp(String name) {
+        this.name = name;
+    }
+
+    public PlayerImp() {
+    }
+
+    // Р’Р·СЏС‚СЊ РєР°СЂС‚Сѓ РёР· РєРѕР»РѕРґС‹
     @Override
     public void takeCard(CardBJ card) {
         for (int i = 0; i < cardBJS.length; i++) {
@@ -19,7 +28,7 @@ public class PlayerImp implements Player {
         }
     }
 
-    // Посчитать сумму карт на руках
+    // РџРѕСЃС‡РёС‚Р°С‚СЊ СЃСѓРјРјСѓ РєР°СЂС‚ РЅР° СЂСѓРєР°С…
     @Override
     public int countValuesAllCardOnHand() {
         int result = 0;
@@ -31,32 +40,37 @@ public class PlayerImp implements Player {
         return result;
     }
 
-    // Нужна ли дополнительная карта
+    // РќСѓР¶РЅР° Р»Рё РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅР°СЏ РєР°СЂС‚Р°
     @Override
     public boolean needCard() {
-        System.out.println("--------------Ввши карты---------------");
-        this.showCardOnHand();
-        System.out.println("У вас на руках столько очков:");
+        System.out.println("--------------Р’РІС€Рё РєР°СЂС‚С‹---------------");
+        System.out.println("РРіСЂРѕРє " + name);
+        this.showCardOnHandAhdSymbol();
+        System.out.println("РЈ РІР°СЃ РЅР° СЂСѓРєР°С… СЃС‚РѕР»СЊРєРѕ РѕС‡РєРѕРІ:");
         System.out.println(this.countValuesAllCardOnHand());
-        System.out.println("Нужно ли вам еще карта?");
-        System.out.println("Если нужна введите да, если нет, просто нажмите Enter");
+        System.out.println("РќСѓР¶РЅРѕ Р»Рё РІР°Рј РµС‰Рµ РєР°СЂС‚Р°?");
+        System.out.println("Р•СЃР»Рё РЅСѓР¶РЅР° РІРІРµРґРёС‚Рµ РґР°, РµСЃР»Рё РЅРµС‚, РїСЂРѕСЃС‚Рѕ РЅР°Р¶РјРёС‚Рµ Enter");
         Scanner scanner = new Scanner(System.in);
         String answer = scanner.nextLine();
-        if (answer.equalsIgnoreCase("да")) {
+        if (answer.equalsIgnoreCase("РґР°")) {
             return true;
         }
         return false;
     }
 
-    // Выводит карту на руках
+    // Р’С‹РІРѕРґРёС‚ РєР°СЂС‚Сѓ РЅР° СЂСѓРєР°С…
     @Override
-    public void showCardOnHand() {
+    public void showCardOnHandAhdSymbol() {
         for (CardBJ c : cardBJS) {
             if (c != null) {
                 c.printCard();
+                c.printSymbol();
+
             }
         }
     }
+    //
+
 
     @Override
     public boolean isInGame() {
@@ -71,5 +85,13 @@ public class PlayerImp implements Player {
     @Override
     public boolean isCroupier() {
         return false;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

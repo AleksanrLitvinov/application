@@ -9,4 +9,7 @@ public interface CardBJ {
     // Получить значения карты
 
     int getValue();
+
+    // Вывод символа карты
+    public void printSymbol();
 }

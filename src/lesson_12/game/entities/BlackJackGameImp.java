@@ -59,8 +59,17 @@ public class BlackJackGameImp implements BlackJackGame {
             System.out.println("У нас есть один победител");
             for (Player player : playersInGame) {
                 if (player != null && player.isInGame()) {
-                    player.showCardOnHand();
-                    System.out.println("Выйграл игрок с " + player.countValuesAllCardOnHand() + " очков на руках");
+                    player.showCardOnHandAhdSymbol();
+                    if (player instanceof PlayerImp){
+                        PlayerImp playerImp = (PlayerImp) player;
+                        System.out.println("Выйграл игрок с "+ playerImp.getName() + " " +
+                                player.countValuesAllCardOnHand() + " очков на руках");
+                    } else {
+                        Croupier croupier = (Croupier) player;
+                        System.out.println("Выйграл игрок с "+ croupier.getName()  + " " +
+                                player.countValuesAllCardOnHand() + " очков на руках");
+                    }
+
                     return;
                 }
             }
@@ -79,14 +88,16 @@ public class BlackJackGameImp implements BlackJackGame {
         for (Player player : playersInGame) {
                 if (player != null && player.countValuesAllCardOnHand() == bestValue &&
                         !player.isCroupier() && !nameOfWinner.startsWith("Winner is not Croupier")){
-                    System.out.println("Выйграл игрок с таким количечтвом очков");
-                    player.showCardOnHand();
+                    PlayerImp playerImp = (PlayerImp) player;
+                    System.out.println("Выйграл игрок " + playerImp.getName() +" с таким количечтвом очков");
+                    player.showCardOnHandAhdSymbol();
                     nameOfWinner = "Winner is not Croupier";
                     System.out.println(player.countValuesAllCardOnHand());
                 } else  if (player != null && player.countValuesAllCardOnHand() == bestValue &&
                         player.isCroupier()){
-                    System.out.println("Выйграл крупье с таким количечтвом очков");
-                    player.showCardOnHand();
+                    Croupier croupier = (Croupier) player;
+                    System.out.println("Выйграл " + croupier.getName() + " с таким количечтвом очков");
+                    player.showCardOnHandAhdSymbol();
                     System.out.println(player.countValuesAllCardOnHand());
                 }
         }
