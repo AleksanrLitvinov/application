@@ -32,7 +32,23 @@ public class ExceptionsClass {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        System.out.println("---------------------------------------------");
 
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("---------------------------------------------");
+
+        String str = null;
+        try {
+            System.out.println(str.length());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Очистить кэш, внести в журнал логов сообщение, отправить сообщение в блок try
+        }
 
     }
 }
