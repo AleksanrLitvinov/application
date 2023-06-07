@@ -21,6 +21,18 @@ public class Cat {
         this.age = age;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public String getParentName() {
+        return parentName;
+    }
+
     public Cat(Integer age) {
         this.age = age;
     }

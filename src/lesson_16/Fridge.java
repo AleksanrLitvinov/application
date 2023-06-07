@@ -6,6 +6,7 @@ public class Fridge {
 
     private HashMap<String, Integer> prodList = new HashMap<>();
 
+    @Deprecated
     public void putProducts(String name, Integer count) {
         if (prodList.containsKey(name)) {
             prodList.put(name, count + prodList.get(name));

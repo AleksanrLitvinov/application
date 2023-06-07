@@ -1,5 +1,8 @@
 package lesson_15;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Dog {
 
     private String name;
@@ -46,6 +49,19 @@ public class Dog {
             throw new DogIsNotReadyWalk("Собака " + name + " не готова");
         }
     }
+    @SuppressWarnings("unchecked")
+    public void testSuppressWarnings() {
+        Map map = new HashMap();
+        map.put("AAA", 12);
+        map.put("BBB", 11);
+        map.put("CCC", 10);
+        map.put("NNN", 9);
+    }
+
+
+
+
+
 
 
 }
