@@ -10,6 +10,6 @@ import java.lang.annotation.Target;
 public @interface MethodInfo {
 
     String author() default  "Viktor";
-    int dataOfCreation();
+    int dataOfCreation() default 2023;
     String purpose();
 }
