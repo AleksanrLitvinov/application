@@ -3,6 +3,11 @@ package lesson_12.game.entities;
 import lesson_12.game.interfaces.BlackJackGame;
 import lesson_12.game.interfaces.DeckOfCard;
 import lesson_12.game.interfaces.Player;
+import lesson_5.Array;
+
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.stream.IntStream;
 
 public class BlackJackGameImp implements BlackJackGame {
 
@@ -13,34 +18,51 @@ public class BlackJackGameImp implements BlackJackGame {
     // Добавит игрока в игру
     @Override
     public void addPlayerInGame(Player player) {
-        for (int i = 0; i < playersInGame.length; i++) {
-            if (playersInGame[i] == null){
-                playersInGame[i] = player;
-                break;
-            }
-        }
+//        for (int i = 0; i < playersInGame.length; i++) {
+//            if (playersInGame[i] == null){
+//                playersInGame[i] = player;
+//                break;
+//            }
+//        }
+        IntStream.range(0, playersInGame.length)//IntStream поток чисел,
+                .filter(i -> playersInGame[i] == null)// как и if
+                .findFirst()//  findFirst() возвращает первый элемент по порядку
+                .ifPresent(i -> playersInGame[i] = player);// установка значения в массив
 
     }
 
     @Override
     public void giveTwoCardsToEachPlayerOnStart() {
-        for (Player player : playersInGame) {
-           if (player != null) {
-               player.takeCard(deckOfCard.getRandomCard());
-               player.takeCard(deckOfCard.getRandomCard());
-           }
-        }
+//        for (Player player : playersInGame) {
+//           if (player != null) {
+//               player.takeCard(deckOfCard.getRandomCard());
+//               player.takeCard(deckOfCard.getRandomCard());
+//           }
+//        }
+        Arrays.stream(playersInGame)
+                .filter(Objects::nonNull)
+                .forEach(player -> {
+                    player.takeCard(deckOfCard.getRandomCard());
+                    player.takeCard(deckOfCard.getRandomCard());
+                });
     }
 
     @Override
     public void giveCardIfNeedToPlayer() {
-        for (Player player : playersInGame) {
-            if (player != null) {
-              while (player.needCard()) {
-                  player.takeCard(deckOfCard.getRandomCard());
-              }
-            }
-        }
+//        for (Player player : playersInGame) {
+//            if (player != null) {
+//              while (player.needCard()) {
+//                  player.takeCard(deckOfCard.getRandomCard());
+//              }
+//            }
+//        }
+        Arrays.stream(playersInGame)
+                .filter(Objects::nonNull)
+                .forEach(player -> {
+                    while (player.needCard()) {
+                        player.takeCard(deckOfCard.getRandomCard());
+                    }
+                    });
     }
 
     @Override
@@ -106,12 +128,15 @@ public class BlackJackGameImp implements BlackJackGame {
 
     @Override
     public int countAllPlayerInGame() {
-        int countOfPlayers = 0;
-        for (Player player : playersInGame) {
-            if (player != null && player.isInGame()) {
-              countOfPlayers++;
-            }
-        }
-        return countOfPlayers;
+//        int countOfPlayers = 0;
+//        for (Player player : playersInGame) {
+//            if (player != null && player.isInGame()) {
+//              countOfPlayers++;
+//            }
+//        }
+        return (int) Arrays.stream(playersInGame)
+                .filter(Objects::nonNull)
+                .filter(Player::isInGame)
+                .count();
     }
 }

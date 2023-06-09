@@ -13,10 +13,11 @@ public class Croupier extends PlayerImp {
 
     @Override
     public boolean needCard() {
-        if (countValuesAllCardOnHand() > 17) {
-            return false;
-        }
-        return true;
+//        if (countValuesAllCardOnHand() > 17) {
+//            return false;
+//        }
+//        return true;
+        return countValuesAllCardOnHand() <= 17;
     }
 
     @Override

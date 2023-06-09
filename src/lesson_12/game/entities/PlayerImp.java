@@ -3,7 +3,9 @@ package lesson_12.game.entities;
 import lesson_12.game.interfaces.CardBJ;
 import lesson_12.game.interfaces.Player;
 
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class PlayerImp implements Player {
     private String name;
@@ -20,24 +22,33 @@ public class PlayerImp implements Player {
     // Взять карту из колоды
     @Override
     public void takeCard(CardBJ card) {
-        for (int i = 0; i < cardBJS.length; i++) {
-            if (cardBJS[i] == null) {
-                cardBJS[i] = card;
-                break;
-         }
-        }
+//        for (int i = 0; i < cardBJS.length; i++) {
+//            if (cardBJS[i] == null) {
+//                cardBJS[i] = card;
+//                break;
+//         }
+//        }
+        IntStream.range(0, cardBJS.length)
+                .filter(i -> cardBJS[i] == null)
+                .findFirst()
+                .ifPresent(i -> cardBJS[i] = card);
     }
 
     // Посчитать сумму карт на руках
     @Override
     public int countValuesAllCardOnHand() {
-        int result = 0;
-        for (CardBJ c : cardBJS) {
-            if(c != null) {
-                result += c.getValue();
-            }
-        }
-        return result;
+//        int result = 0;
+//        for (CardBJ c : cardBJS) {
+//            if(c != null) {
+//                result += c.getValue();
+//            }
+//        }
+
+
+       return Arrays.stream(cardBJS)
+               .filter(Objects::nonNull)
+               .map(CardBJ::getValue)
+               .reduce(0, Integer::sum);
     }
 
     // Нужна ли дополнительная карта
@@ -61,13 +72,18 @@ public class PlayerImp implements Player {
     // Выводит карту на руках
     @Override
     public void showCardOnHandAhdSymbol() {
-        for (CardBJ c : cardBJS) {
-            if (c != null) {
-                c.printCard();
-                c.printSymbol();
-
-            }
-        }
+//        for (CardBJ c : cardBJS) {
+//            if (c != null) {
+//                c.printCard();
+//                c.printSymbol();
+//
+//            }
+//        }
+        Arrays.stream(cardBJS)
+                .filter(Objects::nonNull)
+                .forEach(cardBJ -> {
+            cardBJ.printCard(); cardBJ.printSymbol();
+        });
     }
     //
 

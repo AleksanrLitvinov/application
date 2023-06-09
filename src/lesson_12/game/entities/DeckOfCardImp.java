@@ -3,6 +3,7 @@ package lesson_12.game.entities;
 import lesson_12.game.interfaces.CardBJ;
 import lesson_12.game.interfaces.DeckOfCard;
 
+import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class DeckOfCardImp implements DeckOfCard {
@@ -84,7 +85,11 @@ public class DeckOfCardImp implements DeckOfCard {
 
     @Override
     public CardBJ getRandomCard() {
-        int randomIndex = ThreadLocalRandom.current().nextInt(0, 51);
-        return cards[randomIndex];
+//        int randomIndex = ThreadLocalRandom.current().nextInt(0, 51);
+//        return cards[randomIndex];
+        return Arrays.stream(cards)
+                .skip(ThreadLocalRandom.current().nextInt(0, 51)) // skip(long n) используется для пропуска n элементов.
+                .findFirst() //findFirst() возвращает первый элемент по порядку
+                .orElse(null); // элемент не найден верни null
     }
 }
